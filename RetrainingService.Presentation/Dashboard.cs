@@ -40,14 +40,5 @@ namespace RetrainingScheduler.RetrainingService.Presentation
             }
         }
 
-        public static void DisplayUnscheduledSessions(List<SessionDto> allSessions, List<SessionDto> scheduledSessions)
-        {
-            var unscheduledSessions = allSessions.Except(scheduledSessions).ToList();
-            Console.WriteLine("\nUnscheduled Sessions:");
-            foreach (var session in unscheduledSessions)
-            {
-                Console.WriteLine($"{session.SessionName} - {session.Duration} minutes");
-            }
-        }
     }
 }
