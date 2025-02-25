@@ -9,12 +9,11 @@ namespace RetrainingScheduler.RetrainingService.Application
 {
     public class DataCollector
     {
-        public static List<SessionDto> CollectSessionsFromUser()
+        public static Queue<SessionDto> CollectSessionsFromUser()
         {
             try
             {
-
-                List<SessionDto> sessions = new List<SessionDto>();
+                Queue<SessionDto> sessions = new Queue<SessionDto>();
 
                 Console.WriteLine("Enter session details (type 'done' to finish):");
 
@@ -27,10 +26,11 @@ namespace RetrainingScheduler.RetrainingService.Application
                 Console.WriteLine("Enter break duration (in minutes): ");
                 int breakDuration = int.Parse(Console.ReadLine());
 
-                TrainingInterval trainingInterval = new TrainingInterval((int)(endTime - startTime).TotalMinutes);
-                int totalAvailableMinutes = trainingInterval.Time - breakDuration;
+                int totalAvailableMinutes = (int)(endTime - startTime).TotalMinutes - breakDuration;
                 int remainingProgramInterval = totalAvailableMinutes;
                 int i = 0;
+
+                DateTime currentStartTime = startTime;
 
                 while (true)
                 {
@@ -63,18 +63,30 @@ namespace RetrainingScheduler.RetrainingService.Application
                         break;
                     }
 
+                    DateTime sessionEndTime = currentStartTime.AddMinutes(sessionDuration);
+                    string interval = $"{currentStartTime.ToString("h:mm tt")} - {sessionEndTime.ToString("h:mm tt")}";
+
                     SessionDto session = new SessionDto
                     {
                         Id = i + 1,
                         SessionName = sessionName,
                         Duration = sessionDuration,
-                        FacilitatorName = facilitatorName
+                        FacilitatorName = facilitatorName,
+                        Interval = interval
                     };
 
-                    sessions.Add(session);
+                    sessions.Enqueue(session);
                     remainingProgramInterval -= sessionDuration;
+                    currentStartTime = sessionEndTime;
                     i++;
                 }
+
+                // Example output
+                foreach (var session in sessions)
+                {
+                    Console.WriteLine($"Session ID: {session.Id}, Name: {session.SessionName}, Facilitator: {session.FacilitatorName}, Duration: {session.Duration} minutes, Interval: {session.Interval}");
+                }
+
                 return sessions;
             }
             catch (Exception ex)
@@ -83,7 +95,6 @@ namespace RetrainingScheduler.RetrainingService.Application
             }
 
             return default;
-
         }
     }
 }

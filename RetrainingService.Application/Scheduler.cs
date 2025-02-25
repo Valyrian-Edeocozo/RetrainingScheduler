@@ -10,16 +10,12 @@ namespace RetrainingScheduler.RetrainingService.Application
 {
     public class Scheduler
     {
-        public List<SessionDto> ScheduleSessions(List<SessionDto> sessions)
+        public List<SessionDto> ScheduleSessions(Queue<SessionDto> sessions)
         {
 
-            sessions.Sort((a, b) => a.Duration.CompareTo(b.Duration));
-
-            Queue<SessionDto> sessionQueue = new Queue<SessionDto>(sessions);
-
-            while (sessionQueue.Count > 0)
+            while (sessions.Count > 0)
             {
-                SessionDto currentSession = sessionQueue.Peek();
+                SessionDto currentSession = sessions.Peek();
 
                 var session = new Session
                 {
@@ -27,10 +23,11 @@ namespace RetrainingScheduler.RetrainingService.Application
                     SessionName = currentSession.SessionName,
                     FacilitatorName = currentSession.FacilitatorName,
                     Duration = currentSession.Duration,
-                    IsScheduled = true
+                    IsScheduled = true,
+                    Interval = currentSession.Interval
                 };
-                DbContext.Sessions.Add(session);
-                sessionQueue.Dequeue();
+                DbContext.Sessions.Enqueue(session);
+                sessions.Dequeue();
             }
 
             return DbContext.Sessions.Select(s => new SessionDto
@@ -39,7 +36,8 @@ namespace RetrainingScheduler.RetrainingService.Application
                 SessionName = s.SessionName,
                 FacilitatorName = s.FacilitatorName,
                 Duration = s.Duration,
-                IsScheduled = s.IsScheduled
+                IsScheduled = s.IsScheduled,
+                Interval = s.Interval
             }).ToList();
         }
     }

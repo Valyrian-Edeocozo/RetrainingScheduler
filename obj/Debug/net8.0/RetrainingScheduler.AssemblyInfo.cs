@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("RetrainingScheduler")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d654bc6a515ea3e589b2570da2c91ea2713d22d7")]
 [assembly: System.Reflection.AssemblyProductAttribute("RetrainingScheduler")]
 [assembly: System.Reflection.AssemblyTitleAttribute("RetrainingScheduler")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

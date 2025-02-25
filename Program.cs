@@ -6,7 +6,7 @@ using RetrainingScheduler.RetrainingService.Domain.Dto;
 using RetrainingScheduler.RetrainingService.Presentation;
 
 //Collect input data
-List<SessionDto> sessions = DataCollector.CollectSessionsFromUser();
+Queue<SessionDto> sessions = DataCollector.CollectSessionsFromUser();
 
 if (sessions == default)
 {

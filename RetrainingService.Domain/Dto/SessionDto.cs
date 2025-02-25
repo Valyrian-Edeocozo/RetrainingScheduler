@@ -12,5 +12,6 @@ namespace RetrainingScheduler.RetrainingService.Domain.Dto
         public string FacilitatorName { get; set; }
         public int Duration { get; set; }
         public bool IsScheduled { get; set; }
+        public string Interval { get; set; } // Changed to string
     }
 }

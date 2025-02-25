@@ -8,6 +8,6 @@ namespace RetrainingScheduler.RetrainingService.Infrastructure
 {
     public class DbContext
     {
-        public static IList<Session> Sessions { get; set; } = new List<Session>();
+        public static Queue<Session> Sessions { get; set; } = new Queue<Session>();
     }
 }

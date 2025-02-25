@@ -12,3 +12,4 @@
 /Users/ozoezeutobi/Documents/Task/SchedulingService/RetrainingScheduler/obj/Debug/net8.0/RetrainingScheduler.pdb
 /Users/ozoezeutobi/Documents/Task/SchedulingService/RetrainingScheduler/obj/Debug/net8.0/RetrainingScheduler.genruntimeconfig.cache
 /Users/ozoezeutobi/Documents/Task/SchedulingService/RetrainingScheduler/obj/Debug/net8.0/ref/RetrainingScheduler.dll
+/Users/ozoezeutobi/Documents/Task/SchedulingService/RetrainingScheduler/obj/Debug/net8.0/RetrainingScheduler.sourcelink.json
