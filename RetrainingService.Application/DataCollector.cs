@@ -81,12 +81,6 @@ namespace RetrainingScheduler.RetrainingService.Application
                     i++;
                 }
 
-                // Example output
-                foreach (var session in sessions)
-                {
-                    Console.WriteLine($"Session ID: {session.Id}, Name: {session.SessionName}, Facilitator: {session.FacilitatorName}, Duration: {session.Duration} minutes, Interval: {session.Interval}");
-                }
-
                 return sessions;
             }
             catch (Exception ex)
